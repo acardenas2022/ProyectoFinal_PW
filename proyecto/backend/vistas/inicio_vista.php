@@ -17,7 +17,7 @@
 			<br>
 			<br>
 			<br>
-			<div class="card col l12 s12">
+			<div class="card">
 				<div class="card-content">
 					<div class="center-align" >
 						<h4 class="amber-text text-darken-4"> TU ENVIO SEGURO </h4>
