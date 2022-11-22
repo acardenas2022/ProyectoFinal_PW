@@ -53,7 +53,7 @@ CREATE TABLE `clientes` (
   `apellido` varchar(30) DEFAULT NULL,
   `telefono` char(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,6 +62,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,52369874,'Emilia','Correa','098654122'),(2,46215365,'Nicolas','Mendez','099586321'),(3,12456382,'Enzo','Gomez','097568241'),(4,21546351,'Sofia','Gonzalez','095487632'),(5,45126352,'Diego','Medina','098542163');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-21 20:53:57
+-- Dump completed on 2022-11-22 15:39:19
