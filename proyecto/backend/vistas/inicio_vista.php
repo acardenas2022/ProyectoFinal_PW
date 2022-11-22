@@ -17,13 +17,18 @@
 			<br>
 			<br>
 			<br>
-			<div class="card">
+			<div class="card col l12 s12">
 				<div class="card-content">
 					<div class="center-align" >
 						<h4 class="amber-text text-darken-4"> TU ENVIO SEGURO </h4>
 					
 						<h6 class="black-text"> Asegurate que tu pedido llegue como lo enviaste </h6>
 						<h4 class="black-text"> ¡Eleginos! <h4>
+						<br>
+					</div>
+					<div class= "col l4 s4 center-align">
+						<a href="index.php?r=rastrear" class="waves-effect amber darken-4 btn" >Rastrear envio</a>
+						<a href="index.php?r=ingresarEnvio" class="waves-effect amber darken-4 btn" >Ingresar envio</a>
 					</div>
 				</div>
 			</div>

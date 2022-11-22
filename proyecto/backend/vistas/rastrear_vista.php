@@ -10,12 +10,15 @@
 				<div class="card-content ">
 					<div class="black-text center-align" style="height =20px" >
 						<h4 class="amber-text text-darken-4"> Rastrea tu pedido aquí</h4>
-					
-						<h6> Ingrese el numero de rastreo para ver el estado de su pedido </h6>
 					</div>
-					<br>
-					<br>
-					<h5> Número de rastreo</h5>
+					<form class="col s12">
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="nombreDestinatario" type="text" class="validate">
+								<label for="nombreDestinatario">Numero de rastreo</label>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<th>
