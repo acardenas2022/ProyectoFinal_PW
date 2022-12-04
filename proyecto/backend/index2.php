@@ -1,5 +1,15 @@
 
 
+<?php
+        @session_start();
+
+        if(!isset($_SESSION['nombreUsuario'])){
+
+            header ('Location: login.php');
+        }
+?>
+
+
 <!DOCTYPE html>
 	<html>
 		<head>
@@ -42,8 +52,21 @@
   				color: #fff;
   				background-color: #ee6e73;
  				width: 100%;
- 				height:60px;
+ 				height:80px;
   				line-height: 56px;
+			}
+
+			@media only screen and (min-width: 601px) {
+				nav.nav-extended .nav-wrapper {
+					min-height: 80px;
+				}
+				nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
+					height: 80px;
+					line-height: 80px;
+				}
+				.navbar-fixed {
+					height: 80px;
+				}
 			}
 		
 
@@ -73,15 +96,19 @@
 					height: 80px;
 				}
 			}
-			
+
+			.input-field input[type=text]:focus {
+ 				border-bottom: 1px solid #ff6f00; /* El #000 es el color de la línea */
+  				box-shadow: 0 1px 0 0 #000; /* Y acá, de la pequeña sombra que genera */
+			}
 
 		
 		</style>
 
 		<body>
 			<nav class="amber darken-4">
-				<div class="nav-wrapper amber darken-4" >
-					<div class= "s12 m4 l2"  style="margin-left:40px">
+				<div class="nav-wrapper amber darken-4">
+				<div class= "s12 m4 l2"  style="margin-left:40px">
 						<i class="material-icons left" style="font-size: 70px">local_shipping</i>
 					</div>
 					<div class= "s12 m4 l8">
@@ -90,20 +117,31 @@
 					<div class= "s12 m4 l2"  style="margin-right:40px">
 						<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 							<ul id="nav-mobile" class="right hide-on-med-and-down">
-								<li><a href="index.php?r=inicio">Inicio <i class="material-icons left">home</i></a></li>
-								<li><a href="index.php?r=rastrear">Rastrear envio <i class="material-icons left">location_on</i></a></li>
-								<li><a href="login.php">Login <i class="material-icons left">person</i></a></li>
-							</ul>
-					</div>
+							<li><a href="index2.php?r=inicio2">Inicio <i class="material-icons left">home</i></a></li>
+							<li><a href="index2.php?r=rastrear">Rastrear envio <i class="material-icons left">location_on</i></a></li>
+							<li><a href="index2.php?r=clientes">Clientes <i class="material-icons left">group</i></a></li>
+							<li><a class="modal-trigger" href="#modal3">Salir <i class="material-icons left">forward</i></a></li>
+						</ul>
 				</div>
 			</nav>
 			<ul class="sidenav" id="mobile-demo">
-				<li><a class= "amber-text text-darken-4" href="index.php?r=inicio">Inicio</a></li>
-				<li><a class= "amber-text text-darken-4" href="index.php?r=rastrear">Rastrear</a></li>
-				<li><a class= "amber-text text-darken-4" href="login.php">Login</a></li>
+				<li><a class= "amber-text text-darken-4" href="index2.php?r=inicio">Inicio</a></li>
+				<li><a class= "amber-text text-darken-4" href="index2.php?r=rastrear">Rastrear</a></li>
+				<li><a class= "amber-text text-darken-4" href="index2.php?r=clientes"> Clientes </a></li>
+				<li><a class= "amber-text text-darken-4" href="#modal3">Salir</a></li>
 		 	</ul>
 
-		
+
+			 <div id="modal3" class="modal">
+			<div class="modal-content">
+				<h4 class="amber-text text-darken-4 left" >¿Seguro deseas salir?</h4>
+			</div>
+			<div class="modal-footer">
+				<a href="logout.php" class="modal-close waves-effect waves-green btn-flat white-text amber darken-4">Aceptar</a>
+				<a href="#!" class="modal-close waves-effect waves-green btn-flat white-text amber darken-4">Cancelar</a>
+			</div>
+			</div>
+
 
         <div class="container">
 <?php 	
@@ -111,7 +149,8 @@
 		
 ?>	
 		</div>
-
+			
+			
 			<!--JavaScript at end of body for optimized loading-->
 			<script type="text/javascript" src="web/js/materialize.js"></script>
 			<script> 
@@ -128,7 +167,7 @@
 				<div class="row">
 					<div class="col l4 s4">
 						<div class="white-text center-align">
-							<h5 class= "amber-text text-darken-4"> Contacto </h5> 
+							<h5 class="amber-text text-darken-4"> Contacto </h5> 
 							<a class="white-text"> Telefono: 2604 22 22 <br></a>
 							<a class="white-text"> Email: fast@fastentregas.com </a>
 						</div>

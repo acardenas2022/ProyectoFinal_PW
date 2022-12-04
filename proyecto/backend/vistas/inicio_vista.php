@@ -27,8 +27,8 @@
 						<br>
 					</div>
 					<div class= "col l4 s4 center-align">
+						<a href="index.php?r=agencias" class="waves-effect amber darken-4 btn" >Agencias</a>
 						<a href="index.php?r=rastrear" class="waves-effect amber darken-4 btn" >Rastrear envio</a>
-						<a href="index.php?r=ingresarEnvio" class="waves-effect amber darken-4 btn" >Ingresar envio</a>
 					</div>
 				</div>
 			</div>

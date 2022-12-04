@@ -7,13 +7,13 @@
 			<br>
 			<br>
 			<div class="card">
-				<div class="card-content ">
-					<div class="black-text center-align" style="height =20px" >
-						<h4 class="amber-text text-darken-4"> Rastrea tu pedido aquí</h4>
+				<div class="card-content">
+					<div class="black-text center-align">
+						<h4 class="amber-text text-darken-4"> Rastrear un envío </h4>
 					</div>
 					<form class="col s12">
 						<div class="row">
-							<div class="input-field col s6">
+							<div class="input-field col s12 m4 l4">
 								<input id="nombreDestinatario" type="text" class="validate">
 								<label for="nombreDestinatario">Numero de rastreo</label>
 							</div>

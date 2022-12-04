@@ -1,8 +1,8 @@
 <?php
 
-	class clientes {
+	require_once("modelo/generico.php");
 
-		protected $id;
+	class clientes extends generico{
 
 		protected $documento;
 
@@ -11,11 +11,7 @@
 		protected $apellido; 
 
 		protected $telefono; 
-
-
-		public function traerId(){
-			return $this-> id;
-		}
+ 
 
 		public function traerDocumento(){
 			return $this-> documento;
@@ -44,26 +40,16 @@
 	
 		}
 
-		public function extraerDatos($array, $clave){
-
-			if(isset($array[$clave])){
-				return $array[$clave];
-			}
-			return "";
-		}
-
 		
 		public function ingresar(){
-			$conexion = new PDO("mysql:host=localhost;dbname=trabajoFinal", 'root', '');
-			$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	
+			
 			$sqLInsert = "INSERT clientes SET
 						 documento			= :documento,
 						 nombre		        = :nombre,
 						 apellido	        = :apellido, 
-						 telefono 		    = :telefono";
+						 telefono 		    = :telefono,
+						 estado				= 1";
 	
-			$mysqlPrepare = $conexion->prepare($sqLInsert); 
 			$arraySql = array(
 						"documento"		=> $this->documento, 
 						"nombre"		=> $this->nombre,
@@ -72,31 +58,85 @@
 						
 			);
 	
+			$retorno = $this->imputarCambio($sqLInsert, $arraySql);
+			return $retorno;
+				
 	
-			$respuesta = $mysqlPrepare->execute($arraySql);
-			$retorno = array();
-			if($respuesta){
-				$retorno['codigo'] = "Ok";
-			}else{
-				$retorno['codigo'] = "Error";
-			}
+		}
+
+
+		public function listar($arrayDatos  = array()){
+	
+			$sql = "SELECT * FROM clientes
+						WHERE estado = 1";
+	
+			$arraySql= array();
+			
+		$retorno = $this->cargarDatos($sql, $arraySql);
+		return $retorno;
+	
+		}
+
+			
+		public function cargar($idCliente){
+
+		$sql = "SELECT * FROM clientes 	WHERE id = :id";
+
+
+		$arrayDatos = array();
+		$arrayDatos ['id'] = $idCliente;
+
+		$respuesta = $this->cargarDatos($sql, $arrayDatos);
+		
+		foreach($respuesta as $cliente){
+			$this->id 				=$cliente['id'];		 
+			$this->documento 		=$cliente['documento'];
+			$this->nombre 			=$cliente['nombre'];
+			$this->apellido 		=$cliente['apellido'];
+			$this->telefono 		=$cliente['telefono'];
+		}
+	
+
+	}
+
+		public function editar(){
+
+			
+			$sqlInsert = "UPDATE clientes SET
+							documento 		= :documento,
+							nombre			= :nombre,
+							apellido 		= :apellido,
+							telefono 		= :telefono
+							WHERE id = :id";
+	
+			$arraySql = array(
+							"documento" 	=> $this->documento,
+							"nombre" 		=> $this->nombre,
+							"apellido"		=> $this->apellido,
+							"telefono" 		=> $this->telefono,
+							"id" 			=> $this->id,
+						);
+	
+			$retorno = $this->imputarCambio($sqlInsert, $arraySql);
 			return $retorno;
 	
 		}
-
-		public function listar($arrayDatos  = array()){
-
-			$conexion = new PDO("mysql:host=localhost;dbname=trabajoFinal", 'root', '');
-			$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
-			$sql = "SELECT * FROM clientes";
 	
-			$mysqlPrepare = $conexion->prepare($sql); 
-		  	$mysqlPrepare->execute(array());
-			$respuesta = $mysqlPrepare->fetchALL(PDO::FETCH_ASSOC);
-			return $respuesta;
+		public function borrar(){
 	
+	
+			$sqlInsert = "UPDATE clientes SET estado = 0 WHERE id = :id";	
+			$arraySql = array(
+							"id" => $this->id,
+						);
+			
+			
+			$retorno = $this->imputarCambio($sqlInsert, $arraySql);
+			return $retorno;
 		}
+	
+	
 	
 	
 	}

@@ -980,11 +980,11 @@
 }
 
 .teal {
-  background-color: #009688 !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text {
-  color: #009688 !important;
+  color: #ff6f00!important;
 }
 
 .teal.lighten-5 {
@@ -1004,59 +1004,59 @@
 }
 
 .teal.lighten-3 {
-  background-color: #80cbc4 !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-lighten-3 {
-  color: #80cbc4 !important;
+  color: #ff6f00 !important;
 }
 
 .teal.lighten-2 {
-  background-color: #4db6ac !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-lighten-2 {
-  color: #4db6ac !important;
+  color: #ff6f00 !important;
 }
 
 .teal.lighten-1 {
-  background-color: #26a69a !important;
+  background-color: #ff6f00!important;
 }
 
 .teal-text.text-lighten-1 {
-  color: #26a69a !important;
+  color: #ff6f00!important;
 }
 
 .teal.darken-1 {
-  background-color: #00897b !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-darken-1 {
-  color: #00897b !important;
+  color: #ff6f00!important;
 }
 
 .teal.darken-2 {
-  background-color: #00796b !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-darken-2 {
-  color: #00796b !important;
+  color: #ff6f00 !important;
 }
 
 .teal.darken-3 {
-  background-color: #00695c !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-darken-3 {
-  color: #00695c !important;
+  color: #ff6f00 !important;
 }
 
 .teal.darken-4 {
-  background-color: #004d40 !important;
+  background-color: #ff6f00!important;
 }
 
 .teal-text.text-darken-4 {
-  color: #004d40 !important;
+  color: #ff6f00 !important;
 }
 
 .teal.accent-1 {
@@ -1068,27 +1068,27 @@
 }
 
 .teal.accent-2 {
-  background-color: #64ffda !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-accent-2 {
-  color: #64ffda !important;
+  color: #ff6f00 !important;
 }
 
 .teal.accent-3 {
-  background-color: #1de9b6 !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-accent-3 {
-  color: #1de9b6 !important;
+  color: #ff6f00 !important;
 }
 
 .teal.accent-4 {
-  background-color: #00bfa5 !important;
+  background-color: #ff6f00 !important;
 }
 
 .teal-text.text-accent-4 {
-  color: #00bfa5 !important;
+  color: #ff6f00 !important;
 }
 
 .green {
@@ -5675,23 +5675,23 @@ body.keyboard-focused .dropdown-content li:focus {
 }
 
 .waves-effect.waves-yellow .waves-ripple {
-  background-color: rgba(255, 235, 59, 0.7);
+  background-color: rgba(255, 111, 0, 0.7);
 }
 
 .waves-effect.waves-orange .waves-ripple {
-  background-color: rgba(255, 152, 0, 0.7);
+  background-color: rgba(255, 111, 0, 0.7);
 }
 
 .waves-effect.waves-purple .waves-ripple {
-  background-color: rgba(156, 39, 176, 0.7);
+  background-color: rgba(255, 111, 0, 0.7);
 }
 
 .waves-effect.waves-green .waves-ripple {
-  background-color: rgba(76, 175, 80, 0.7);
+  background-color: rgba(255, 111, 0, 0.7);
 }
 
 .waves-effect.waves-teal .waves-ripple {
-  background-color: rgba(0, 150, 136, 0.7);
+  background-color: rgba(255, 111, 0, 0.7);
 }
 
 .waves-effect input[type="button"], .waves-effect input[type="reset"], .waves-effect input[type="submit"] {
