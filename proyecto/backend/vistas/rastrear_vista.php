@@ -1,32 +1,83 @@
+<?php
+
+	$ruta = isset($_GET['r'])?$_GET['r']:"";
+	$busqueda = isset($_GET['busqueda'])?$_GET['busqueda']:"";
+
+	require_once("modelo/envios.php");
+
+	$objRastreo = new envios ();
 
 
-<table>
-	<thead>
-		<th>
-			<br>
-			<br>
-			<br>
-			<div class="card">
+	$arrayFiltros = array("busqueda" => $busqueda);
+
+	$rastrear = $objRastreo->rastrear($arrayFiltros);
+
+?>
+
+
+			<div class="card" style="margin-top:100px">
 				<div class="card-content">
 					<div class="black-text center-align">
 						<h4 class="amber-text text-darken-4"> Rastrear un envío </h4>
 					</div>
-					<form class="col s12">
-						<div class="row">
-							<div class="input-field col s12 m4 l4">
-								<input id="nombreDestinatario" type="text" class="validate">
-								<label for="nombreDestinatario">Numero de rastreo</label>
+					<div class= "row">
+						<form action="index.php" method="GET"  class= "col s6">
+							<div class="input-field" >
+								<input type="hidden" name="r" value="<?=$ruta?>">
+								<input id="search" type="search" name="busqueda" required>
+									<label class="label-icon" for="search"> Numero de rastreo
+										<i class="material-icons left">search</i>
+									</label>
+										<i class="material-icons">close</i>
 							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
-			<th>
-	</thead>
-	<tbody>
+	
 
-	</tbody>
-</table>
+	<table style="margin:100px 0 100px">
+		<thead>
+
+<?php
+	if(isset($_GET['busqueda']) && $_GET['busqueda'] != ""){
+?>
+<?php
+			foreach($rastrear as $estado){
+
+?>
+			<tr>
+				<th> Codigo Envio </th>
+				<td><?=$estado['codigoEnvio']?></td>
+			</tr>
+			<tr>
+				<th> Nombre Remitente </th>
+				<td><?=$estado['nombreCliente']?></td>
+			</tr>
+			<tr>
+				<th> Nombre Destinatario </th>
+				<td><?=$estado['nombreDestinatario']?></td>
+			</tr>
+			<tr>
+				<th> Direccion </th>
+				<td><?=$estado['direccionDestinatario']?></td>
+			</tr>
+			<tr>
+				<th> Estado </th>
+				<td><?=$estado['estado']?></td>
+			</tr>
+					
+<?php
+		}
+?>		
+		</thead>
+<?php
+		}
+?>	
+	</table>
+
+
+    
 
 
 

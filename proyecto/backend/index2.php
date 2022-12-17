@@ -97,10 +97,8 @@
 				}
 			}
 
-			.input-field input[type=text]:focus {
- 				border-bottom: 1px solid #ff6f00; /* El #000 es el color de la línea */
-  				box-shadow: 0 1px 0 0 #000; /* Y acá, de la pequeña sombra que genera */
-			}
+		
+
 
 		
 		</style>
@@ -112,22 +110,64 @@
 						<i class="material-icons left" style="font-size: 70px">local_shipping</i>
 					</div>
 					<div class= "s12 m4 l8">
-						<a href="#!" class="col l12 m4 s3 center brand-logo"><span class="titulo"> Flash </span><span class="titulo2"> entregas</span></a>
+						<a href="#!" class="col l12 m4 s3 brand-logo" style="margin-left:110px"><span class="titulo"> Flash </span><span class="titulo2"> entregas</span></a>
 					</div>
 					<div class= "s12 m4 l2"  style="margin-right:40px">
 						<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 							<ul id="nav-mobile" class="right hide-on-med-and-down">
 							<li><a href="index2.php?r=inicio2">Inicio <i class="material-icons left">home</i></a></li>
 							<li><a href="index2.php?r=rastrear">Rastrear envio <i class="material-icons left">location_on</i></a></li>
-							<li><a href="index2.php?r=clientes">Clientes <i class="material-icons left">group</i></a></li>
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
+?>
+							<li><a href="index2.php?r=clientes">Ingresar envio <i class="material-icons left">add</i></a></li>
+<?php
+			  }
+?>
+
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Repartidor" OR $_SESSION['perfil'] == "Encargado" ){
+?>
+							<li><a href="index2.php?r=reparto">Reparto <i class="material-icons left">transfer_within_a_station</i></a></li>		
+<?php
+			  }
+?>
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Encargado" OR $_SESSION['perfil'] == "Recepcionista" ){
+?>
+							<li><a href="index2.php?r=estado">Estado <i class="material-icons left">timeline</i></a></li>		
+<?php
+			  }
+?>
+
 							<li><a class="modal-trigger" href="#modal3">Salir <i class="material-icons left">forward</i></a></li>
 						</ul>
 				</div>
 			</nav>
 			<ul class="sidenav" id="mobile-demo">
-				<li><a class= "amber-text text-darken-4" href="index2.php?r=inicio">Inicio</a></li>
+				<li><a class= "amber darken-4 white-text" href="index2.php?r=inicio">Inicio</a></li>
 				<li><a class= "amber-text text-darken-4" href="index2.php?r=rastrear">Rastrear</a></li>
-				<li><a class= "amber-text text-darken-4" href="index2.php?r=clientes"> Clientes </a></li>
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
+?>			
+				<li><a class= "amber-text text-darken-4" href="index2.php?r=clientes"> Ingresar envio </a></li>
+<?php
+			  }
+?>
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Repartidor" OR $_SESSION['perfil'] == "Encargado" ){
+?>
+				<li><a class= "amber-text text-darken-4" href="index2.php?r=reparto">Reparto</a></li>
+<?php
+			  }
+?>
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Encargado" ){
+?>
+				<li><a class= "amber-text text-darken-4" href="index2.php?r=estado">Estado</a></li>
+<?php
+			  }
+?>
 				<li><a class= "amber-text text-darken-4" href="#modal3">Salir</a></li>
 		 	</ul>
 

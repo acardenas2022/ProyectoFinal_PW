@@ -11,13 +11,7 @@
 
 </style>
 
-<table>
-	<thead>
-		<th>
-			<br>
-			<br>
-			<br>
-			<div class="card">
+			<div class="card" style="margin:100px 0 100px">
 				<div class="card-content">
 					<div class="center-align" >
 						<h4 class="amber-text text-darken-4"> TU ENVIO SEGURO </h4>
@@ -32,9 +26,4 @@
 					</div>
 				</div>
 			</div>
-		<th>
-	</thead>
-	<tbody>
 
-	</tbody>
-</table>

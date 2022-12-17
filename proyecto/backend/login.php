@@ -5,7 +5,9 @@
 
     $nombreUsuario= isset($_POST['nombreUsuario'])?$_POST['nombreUsuario']:"";
     $clave= isset($_POST['clave'])?$_POST['clave']:"";
+    
 
+   
     if($nombreUsuario != "" && $clave != "" && isset($_POST['action']) && $_POST['action'] == "login"){
 
         $objUsuarios = new usuarios ();
@@ -116,7 +118,7 @@
                     <div class="col s10 m6 offset-s1 offset-m3">
                         <form action="login.php"  method="POST" class="col s12">
                             <div class="row  center-align">
-								<h4> Login </h2>
+								<h4> Ingresar </h2>
 							</div>
 
 <?php
@@ -132,11 +134,11 @@
 ?>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="nombreUsuario" type="text" class="validate" name="nombreUsuario">
+                                    <input id="nombreUsuario" autocomplete="off" type="text" class="validate" name="nombreUsuario">
                                     <label for="nombreUsuario"> Usuario </label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="clave" type="password" class="validate" name="clave">
+                                    <input id="clave" autocomplete="off" type="password" class="validate" name="clave">
                                     <label for="clave"> Clave </label>
                                 </div>
                             </div>
@@ -145,7 +147,7 @@
                             </button>
                         </form>
                     </div>
-                </div>
+				</div>
             </div>
 
 			<!--JavaScript at end of body for optimized loading-->

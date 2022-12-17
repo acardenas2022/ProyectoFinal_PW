@@ -27,20 +27,56 @@
 	
 		}
 
-		
 
-		public function listar($arrayDatos  = array()){
-	
+		public function listar($arrayFiltros  = array()){
+            
+
 			$sql = "SELECT * FROM ciudades
-						WHERE estado = 1
-                        ORDER BY departamento asc";
+						WHERE estado = 1";
 	
-			$arraySql= array();
+
+            if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+                $sql .= " AND (departamento LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+            }
+
+            $sql .= " ORDER BY departamento asc ";
+
+            $arrayDatos = array(); 
+            
+            if(isset($arrayFiltros['totalRegistro']) && $arrayFiltros['totalRegistro']>0){
+
+                $origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
+                      
+                $sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
+                 
+             }
+          
 			
-		$retorno = $this->cargarDatos($sql, $arraySql);
-		return $retorno;
+		    $retorno = $this->cargarDatos($sql, $arrayDatos);
+		    return $retorno;
 	
 		}
+
+        public function totalRegistros($arrayFiltros = array()){
+    
+            $sql = "SELECT count(id) as total FROM ciudades 
+                        WHERE estado = 1";
+
+            if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+                $sql .= " AND (departamento LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+            }
+
+            $arrayDatos = array();
+            $retorno = 0;
+
+            $respuesta = $this->cargarDatos($sql, $arrayDatos);
+            foreach($respuesta as $total){
+                $retorno = $total['total'];
+            }
+
+            return $retorno;
+
+            }
 	
 	
 	}

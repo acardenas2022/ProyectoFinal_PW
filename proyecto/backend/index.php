@@ -57,6 +57,7 @@
    				flex: 1 0 auto;
   			}
 
+
 			.material-icons-footer{
 				filter: invert(46%) sepia(58%) saturate(2996%) hue-rotate(1deg) brightness(103%) contrast(106%);
 			}
@@ -92,7 +93,7 @@
 							<ul id="nav-mobile" class="right hide-on-med-and-down">
 								<li><a href="index.php?r=inicio">Inicio <i class="material-icons left">home</i></a></li>
 								<li><a href="index.php?r=rastrear">Rastrear envio <i class="material-icons left">location_on</i></a></li>
-								<li><a href="login.php">Login <i class="material-icons left">person</i></a></li>
+								<li><a href="login.php">Ingresar <i class="material-icons left">person</i></a></li>
 							</ul>
 					</div>
 				</div>
@@ -106,6 +107,7 @@
 		
 
         <div class="container">
+			
 <?php 	
 			include("rutas.php");
 		

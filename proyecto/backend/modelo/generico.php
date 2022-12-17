@@ -20,8 +20,9 @@
         }
 
         public function imputarCambio($sql, $arrayDatos = array() ){
-
-            $conexion = new PDO("mysql:host=localhost;dbname=trabajoFinal", 'root', '');
+            
+            include("configuracion/configuracion.php");
+            $conexion = new PDO("mysql:host=".$DBHOST.":".$DBPORT.";dbname=".$DBDATABASE."", $DBUSER, $DBPASSWORD);
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
@@ -41,7 +42,9 @@
         }
 
         public function cargarDatos($sql, $arrayDatos = array()){
-            $conexion = new PDO("mysql:host=localhost;dbname=trabajoFinal", 'root', '');
+            
+            include("configuracion/configuracion.php");
+            $conexion = new PDO("mysql:host=".$DBHOST.":".$DBPORT.";dbname=".$DBDATABASE."", $DBUSER, $DBPASSWORD);
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 

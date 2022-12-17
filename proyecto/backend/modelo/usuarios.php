@@ -39,7 +39,7 @@
 		
 		public function login($usuario, $clave){
 
-	
+
 			$sql = "SELECT * FROM usuarios 
 					WHERE nombreUsuario = :nombreUsuario AND clave = :clave";
 			
@@ -53,7 +53,9 @@
             foreach($respuesta as $usuario){
 
                 @session_start();
+                $_SESSION['id'] = $usuario['id'];
                 $_SESSION['nombreUsuario'] = $usuario['nombreUsuario'];
+                $_SESSION['perfil'] = $usuario['perfil'];
                 return "OK";
 
             }

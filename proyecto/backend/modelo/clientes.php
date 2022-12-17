@@ -64,40 +64,25 @@
 	
 		}
 
-
-		public function listar($arrayDatos  = array()){
-	
-			$sql = "SELECT * FROM clientes
-						WHERE estado = 1";
-	
-			$arraySql= array();
-			
-		$retorno = $this->cargarDatos($sql, $arraySql);
-		return $retorno;
-	
-		}
-
-			
 		public function cargar($idCliente){
 
-		$sql = "SELECT * FROM clientes 	WHERE id = :id";
+			$sql = "SELECT * FROM clientes 	WHERE id = :id";
 
 
-		$arrayDatos = array();
-		$arrayDatos ['id'] = $idCliente;
+			$arrayDatos = array();
+			$arrayDatos ['id'] = $idCliente;
 
-		$respuesta = $this->cargarDatos($sql, $arrayDatos);
-		
-		foreach($respuesta as $cliente){
-			$this->id 				=$cliente['id'];		 
-			$this->documento 		=$cliente['documento'];
-			$this->nombre 			=$cliente['nombre'];
-			$this->apellido 		=$cliente['apellido'];
-			$this->telefono 		=$cliente['telefono'];
+			$respuesta = $this->cargarDatos($sql, $arrayDatos);
+			
+			foreach($respuesta as $cliente){
+				$this->id 				=$cliente['id'];		 
+				$this->documento 		=$cliente['documento'];
+				$this->nombre 			=$cliente['nombre'];
+				$this->apellido 		=$cliente['apellido'];
+				$this->telefono 		=$cliente['telefono'];
+			}
+
 		}
-	
-
-	}
 
 		public function editar(){
 
@@ -135,6 +120,61 @@
 			$retorno = $this->imputarCambio($sqlInsert, $arraySql);
 			return $retorno;
 		}
+	
+
+		public function listar($arrayFiltros  = array()){
+            
+
+			$sql = "SELECT * FROM clientes
+						WHERE estado = 1";
+	
+
+            if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+                $sql .= " AND (nombre LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+				$sql .= " OR (apellido LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+				$sql .= " OR (documento LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+            }
+
+            $sql .= " ORDER BY apellido asc ";
+
+            $arrayDatos = array(); 
+            
+            if(isset($arrayFiltros['totalRegistro']) && $arrayFiltros['totalRegistro']>0){
+
+                $origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
+                      
+                $sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
+                 
+             }
+          
+			
+		    $retorno = $this->cargarDatos($sql, $arrayDatos);
+		    return $retorno;
+	
+		}
+
+        public function totalRegistros($arrayFiltros = array()){
+    
+            $sql = "SELECT count(id) as total FROM clientes 
+                        WHERE estado = 1";
+
+            if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+                $sql .= " AND (nombre LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+				$sql .= " OR (apellido LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+				$sql .= " OR (documento LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+            }
+
+            $arrayDatos = array();
+            $retorno = 0;
+
+            $respuesta = $this->cargarDatos($sql, $arrayDatos);
+            foreach($respuesta as $total){
+                $retorno = $total['total'];
+            }
+
+            return $retorno;
+
+            }
 	
 	
 	

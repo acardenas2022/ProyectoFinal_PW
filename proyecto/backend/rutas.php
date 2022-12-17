@@ -15,6 +15,10 @@
 		include("vistas/inicio2_vista.php");
 	}elseif($ruta == "clientes"){
 		include("vistas/clientes_vista.php");
+	}elseif($ruta == "estado"){
+		include("vistas/estado_vista.php");
+	}elseif($ruta == "reparto"){
+		include("vistas/reparto_vista.php");
 	}
 
 
