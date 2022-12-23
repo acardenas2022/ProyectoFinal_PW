@@ -8,75 +8,21 @@
 			<!--Import materialize.css-->
 			<link type="text/css" rel="stylesheet" href="web/css/materialize.css"  media="screen,projection"/>
 
+			<link type="text/css" rel="stylesheet" href="web/css/flashEntregasCSS.css"  media="screen,projection"/>
+
 			<!--Let browser know website is optimized for mobile-->
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		</head>
 		<style>
 			@font-face{
-					font-family: big_river;
-					src: url("web/font/big_river.ttf");
+				font-family: big_river;
+				src: url("web/font/big_river.ttf");
 			}
 
 			@font-face{
-					font-family: Lovelo_Black;
-					src: url("web/font/Lovelo_Black.ttf");
-			}
-
-			.titulo{
 				font-family: Lovelo_Black;
-				font-size: 30px;
-				text-align: center;
-				color: #424242 ;
-				line-height: 75px;
+				src: url("web/font/Lovelo_Black.ttf");
 			}
-
-			.titulo2{
-				font-family: big_river;
-				font-size: 30px;
-				text-align: center;
-				color: white;
-				line-height: 75px;
-			}
-			
-			nav {
-  				color: #fff;
-  				background-color: #ee6e73;
- 				width: 100%;
- 				height:60px;
-  				line-height: 56px;
-			}
-		
-
-			body {
-   				display: flex;
-   				min-height: 100vh;
-    			flex-direction: column;
- 			}
-
- 			main {
-   				flex: 1 0 auto;
-  			}
-
-
-			.material-icons-footer{
-				filter: invert(46%) sepia(58%) saturate(2996%) hue-rotate(1deg) brightness(103%) contrast(106%);
-			}
-
-			@media only screen and (min-width: 200px) {
-				nav.nav-extended .nav-wrapper {
-					min-height: 80px;
-				}
-				nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
-					height: 80px;
-					line-height: 80px;
-				}
-				.navbar-fixed {
-					height: 80px;
-				}
-			}
-			
-
-		
 		</style>
 
 		<body>
@@ -113,6 +59,7 @@
 		
 ?>	
 		</div>
+		
 
 			<!--JavaScript at end of body for optimized loading-->
 			<script type="text/javascript" src="web/js/materialize.js"></script>
@@ -125,7 +72,7 @@
 			</script>
 		</body>
 		<main></main>
-		<footer class="page-footer  grey darken-3">
+		<footer class="page-footer grey darken-3">
 			<div>
 				<div class="row">
 					<div class="col l4 s4">

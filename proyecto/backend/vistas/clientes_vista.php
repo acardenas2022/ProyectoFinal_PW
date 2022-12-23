@@ -5,6 +5,7 @@
 	$idCliente = isset($_GET['id'])?$_GET['id']:"";
 	$pagina = isset($_GET['pagina'])?$_GET['pagina']:"1";
 	$busqueda = isset($_GET['busqueda'])?$_GET['busqueda']:"";
+	$llaveValor	= isset($_POST['llave'])?$_POST['llave']:"";
 
 	require_once("modelo/clientes.php");
 
@@ -14,10 +15,13 @@
 
 	if(isset($_POST['action']) && $_POST['action'] == "ingresar"){
 
-		$arrayDatos = $_POST;
-		$objClientes->constructor($arrayDatos);
-		$respuesta = $objClientes->ingresar();
-
+		if($llaveValor == $_SESSION['llave']){
+			
+			$arrayDatos = $_POST;
+			$objClientes->constructor($arrayDatos);
+			$respuesta = $objClientes->ingresar();
+		
+		}
 	}
 
 	if(isset($_POST['action']) && $_POST['action'] == "editar"){
@@ -82,27 +86,14 @@
 	$listaClientes = $objClientes->listar($arrayFiltros);
 
 
+	$llave = date("Ymdhis");
+	$_SESSION['llave'] = $llave;
+
+
+	
 ?>
 
-<style>
 
-	.pagination li a {
-		color: #ff6f00;
-		display: inline-block;
-		font-size: 1.2rem;
-		padding: 0 10px;
-		line-height: 30px;
-	}
-	.pagination li.active {
-  		background-color: #ff6f00 ;
-	}
-
-	.pagination li.disabled a {
-		cursor: default;
-		color: #ff6f00;
-	}
-
-</style>
 
 
 <?php
@@ -116,21 +107,21 @@
 			<form action="index2.php?r=<?=$ruta?>"  method="POST" class= "col s12">
 				<div class="row">
 					<div class="input-field col s6">
-						<input id="documento" type="text" class="validate" name="documento" value="<?=$objClientes->traerDocumento()?>">
+						<input id="documento" autocomplete="off" type="number" class="validate" name="documento" value="<?=$objClientes->traerDocumento()?>">
 						<label for="documento">Documento</label>
 					</div>
 					<div class="input-field col s6">
-						<input id="nombre" type="text" class="validate" name="nombre"  value="<?=$objClientes->traerNombre()?>">
+						<input id="nombre" autocomplete="off" type="text" class="validate" name="nombre"  value="<?=$objClientes->traerNombre()?>">
 						<label for="nombre">Nombre</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s6">
-						<input id="apellido" type="text" class="validate" name="apellido"  value="<?=$objClientes->traerApellido()?>">
+						<input id="apellido" autocomplete="off" type="text" class="validate" name="apellido"  value="<?=$objClientes->traerApellido()?>">
 						<label for="apellido">Apellido</label>
 					</div>
 					<div class="input-field col s6">
-						<input id="telefono" type="text" class="validate" name="telefono"  value="<?=$objClientes->traerTelefono()?>">
+						<input id="telefono" autocomplete="off" type="text" class="validate" name="telefono"  value="<?=$objClientes->traerTelefono()?>">
 						<label for="telefono">Telefono</label>
 					</div>
 				</div>
@@ -188,17 +179,16 @@
 ?>
 
 
-
-
 	<div class="card" style="margin:100px 0 100px">
-		<h3 class="center align"> Cartera de Clientes </h3>
-		<br>
+		<div class="grey darken-3 valign-wrapper" style="height: 80px">
+			<h4 class="white-text amber-text text-darken-4" style="margin-left:30px">Cartera de Clientes</h4>
+		</div>
 		<div class="row">
-			<div class="col s12 m4 l8">
+			<div class="col s6">
 				<form action="index2.php" method="GET">
 					<div class="input-field">
 						<input type="hidden" name="r" value="<?=$ruta?>">
-						<input id="search" type="search" name="busqueda" required>
+						<input id="search" autocomplete="off" type="search" name="busqueda" required>
 						<label class="label-icon left" for="search">
 							<i class="material-icons">search</i>
 						</label>
@@ -207,23 +197,23 @@
 				</form>
 			</div>
 			<!-- Modal Trigger -->
-			<div class="valign-wrapper right" style="height:60px">
-				<a class=" waves-effect amber darken-4 btn modal-trigger" href="#modal8">Nuevo cliente
-					<i class="material-icons left white-text">person_add</i></a>
-				</a>
+			<div class= "col s6" style= "margin-top:20px">
+					<a class=" waves-effect amber darken-4 btn modal-trigger  right" href="#modal8">Nuevo cliente
+						<i class="material-icons left white-text">person_add</i></a>
+					</a>
 			</div>
 		</div>
 					
 		<!-- Modal Structure -->
 		<div id="modal8" class="modal">
 			<div class="grey darken-3 valign-wrapper" style="height: 80px">
-				<h4 class="white-text amber-text text-darken-4 center-align" style="margin-left:30px">Nuevo Cliente</h4>
+				<h4 class="white-text amber-text text-darken-4" style="margin-left:30px">Nuevo Cliente</h4>
 			</div>
 			<form action="index2.php?r=<?=$ruta?>" method="POST" class="col s12">
 				<div class="modal-content">
 					<div class="row">
 						<div class="input-field col s6">
-							<input id="documento" autocomplete="off" type="text" class="validate" name="documento">
+							<input id="documento" autocomplete="off" type="number" class="validate" name="documento">
 							<label for="documento">Documento</label>
 						</div>
 						<div class="input-field col s6">
@@ -243,23 +233,24 @@
 					</div>	
 				</div>
 				<div class="modal-footer">
+					<input type="hidden" name="llave" value="<?=$llave?>">
 					<button class="btn waves-effect amber darken-4 right" type="submit" name="action" value="ingresar"> Guardar
 						<i class="material-icons right">save</i>
 					</button>
 				</div>
 			</form>
 		</div>
+		
 		<table class="striped">
 			<thead>
-				<tr><th colspan = "10"></tr>
 				<tr class="grey darken-3 white-text">
 					<th>#</th>
 					<th>Documento</th>
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Telefono</th>
-					<th>Acciones</th>
-					<th>Envios</th>
+					<th style="width:150px">Acciones</th>
+					<th style="width:150px">Envios</th>
 				</tr>
 			</thead>
 			<tbody>

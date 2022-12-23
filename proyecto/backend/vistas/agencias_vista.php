@@ -5,13 +5,13 @@
 	$busqueda = isset($_GET['busqueda'])?$_GET['busqueda']:"";
 
 
-	require_once("modelo/agencias.php");
+	require_once("modelo/ciudades.php");
 
-	$objAgencias = new agencias();
+	$objAgencias = new ciudades();
 
 	
 
-	$arrayFiltros = array("totalRegistro"=>5, "busqueda" => $busqueda);
+	$arrayFiltros = array("totalRegistro"=>10, "busqueda" => $busqueda);
 
 	$totalRegistros = $objAgencias->totalRegistros($arrayFiltros);
 
@@ -44,49 +44,35 @@
 
 
 
-	<style>
-	.pagination li a {
-		color: #ff6f00;
-		display: inline-block;
-		font-size: 1.2rem;
-		padding: 0 10px;
-		line-height: 30px;
-	}
-	.pagination li.active {
-  		background-color: #ff6f00 ;
-	}
 
-	.pagination li.disabled a {
-		cursor: default;
-		color: #ff6f00;
-	}
-
-	</style>
-
-
-	<div class="card">
-		<div class="card-content">
-			<div class="center-align" >
-				<table>
+	<div class="card" style="margin:100px 0 100px">
+		<div class="grey darken-3 valign-wrapper" style="height: 80px">
+			<h4 class="white-text amber-text text-darken-4" style="margin-left:30px"> NUESTRAS AGENCIAS </h4>
+		</div>
+				<div class="row" style="margin-top: 30px">
+						<div class= "col s6">
+							<h6 class="black-text" style="margin-left:20px"> Encontra aqui tu agencia mas cercana </h6>
+						</div>
+						<div class="col s6">
+							<form action="index.php" method="GET">
+								<div class="input-field">
+									<input type="hidden" name="r" value="<?=$ruta?>">
+									<input id="search" autocomplete="off" type="search" name="busqueda" required>
+									<label class="label-icon" for="search">
+										<i class="material-icons">search</i>
+									</label>
+									<i class="material-icons">close</i>
+								</div>
+							</form>
+						</div>
+					</div>
+		
+					<table class="striped">
 					<thead>
-						<tr colspan= 7 class= "center align">
-							<h4 class="amber-text text-darken-4"> NUESTRAS AGENCIAS </h4>
-							<h6 class="black-text"> Encontra aqui tu agencia mas cercana </h6>
-						</tr>
-						<br>
-						<tr>
-							<div class="col s6">
-								<form action="index.php" method="GET">
-									<div class="input-field">
-										<input type="hidden" name="r" value="<?=$ruta?>">
-										<input id="search" type="search" name="busqueda" required>
-										<label class="label-icon" for="search">
-											<i class="material-icons">search</i>
-										</label>
-										<i class="material-icons">close</i>
-									</div>
-								</form>
-							</div>
+						<tr><th colspan = "10"></tr>
+							<tr class="grey darken-3 white-text">
+							<th>Ciudad</th>
+							<th>Departamento</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -134,7 +120,7 @@
 						</tr>
 					</tbody>
 				</table>
+				
 			</div>
-		</div>
-	</div>
+	
 	

@@ -149,7 +149,7 @@
 	
 		}
 
-		public function listar($arrayDatos  = array()){
+		public function listarEnvios($arrayFiltros  = array()){
 	
 			$sql = "SELECT
 						e.id AS id,
@@ -158,19 +158,34 @@
 						CONCAT(c.nombre, c.apellido) AS nombreCliente,
 						e.fechaRecepcion AS fechaRecepcion,
 						ci.ciudad AS ciudadDestinatario,
-						ci.departamento AS departamentoDestinatario
+						e.fechaHoraEntrega AS fechaHoraEntrega,
+						e.estado AS estado
 					FROM envio e
     				INNER JOIN clientes c ON c.id = e.id_cliente
     				INNER JOIN usuarios u ON u.id = e.id_usuario
-					INNER JOIN ciudades ci ON ci.id = e.id_ciudad";
+					INNER JOIN ciudades ci ON ci.id = e.id_ciudad
+					WHERE e.estado != ''";
+
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+			$sql .= " AND (e.codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+			}
 	
+			$sql .= " ORDER BY estado asc ";
+
 			$arraySql= array();
+
+			if(isset($arrayFiltros['totalRegistro']) && $arrayFiltros['totalRegistro']>0){
+
+                $origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
+                      
+                $sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
+                 
+             }
 			
-		$retorno = $this->cargarDatos($sql, $arraySql);
-		return $retorno;
+			$retorno = $this->cargarDatos($sql, $arraySql);
+			return $retorno;
 	
 		}
-
 
 
 		public function listarSelect(){
@@ -214,7 +229,7 @@
 		
 	
 
-	}
+		}
 
 		public function editar(){
 
@@ -259,9 +274,9 @@
 			return $retorno;
 		}
 
+
 		public function rastrear($arrayFiltros  = array()){
             
-
 			$sql = "SELECT
 						e.id AS id,
 						e.codigoEnvio AS codigoEnvio,
@@ -272,14 +287,12 @@
 						e.estado AS estado
 					FROM envio e
 					INNER JOIN clientes c ON c.id = e.id_cliente
-					INNER JOIN ciudades ci ON ci.id = e.id_ciudad";
-	
-
-            if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
-                $sql .= " AND (codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
-            }
-
-            $arrayDatos = array(); 
+					INNER JOIN ciudades ci ON ci.id = e.id_ciudad
+					WHERE e.codigoEnvio = :codigoBusqueda";
+            
+            $arrayDatos = array(
+							"codigoBusqueda"	=>$arrayFiltros['busqueda'],
+			); 
 			
 		    $retorno = $this->cargarDatos($sql, $arrayDatos);
 		    return $retorno;
@@ -287,7 +300,7 @@
 		}
 	
 		
-		public function listarpendientes($arrayDatos  = array()){
+		public function listarpendientes($arrayFiltros  = array()){
 	
 			$sql = "SELECT
 						e.id AS id,
@@ -302,11 +315,23 @@
     				INNER JOIN usuarios u ON u.id = e.id_usuario
 					INNER JOIN ciudades ci ON ci.id = e.id_ciudad
 					WHERE e.estado = 'Pendiente'";
+
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+			$sql .= " AND (e.codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+			}
 	
 			$arraySql= array();
+
+			if(isset($arrayFiltros['totalRegistro']) && $arrayFiltros['totalRegistro']>0){
+
+                $origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
+                      
+                $sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
+                 
+             }
 			
-		$retorno = $this->cargarDatos($sql, $arraySql);
-		return $retorno;
+			$retorno = $this->cargarDatos($sql, $arraySql);
+			return $retorno;
 	
 		}
 
@@ -321,7 +346,6 @@
 						e.calle AS calle,
 						e.numeroPuerta AS numeroPuerta, 
 						e.apartamento AS apartamento,
-						e.fechaRecepcion AS fechaRecepcion,
 						ci.ciudad AS ciudadDestinatario,
 						ci.departamento AS departamentoDestinatario
 					FROM envio e
@@ -329,12 +353,24 @@
     				INNER JOIN usuarios u ON u.id = e.id_usuario
 					INNER JOIN ciudades ci ON ci.id = e.id_ciudad
 					WHERE e.estado = 'Reparto'";
+
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+				$sql .= " AND (e.codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+			}
 	
 			$arraySql= array();
-			
-		$retorno = $this->cargarDatos($sql, $arraySql);
-		return $retorno;
-	
+
+			if(isset($arrayFiltros['totalRegistro']) && $arrayFiltros['totalRegistro']>0){
+
+				$origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
+					
+				$sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
+				
+			}
+				
+			$retorno = $this->cargarDatos($sql, $arraySql);
+			return $retorno;
+		
 		}
 
 		public function listarentregados($arrayFiltros  = array()){
@@ -354,29 +390,38 @@
 					INNER JOIN ciudades ci ON ci.id = e.id_ciudad
 					WHERE e.estado = 'Entregado'";
 
-		if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
 			$sql .= " AND (codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
-		}
+			}
 	
 			$arraySql= array();
+
+			if(isset($arrayFiltros['totalRegistro']) && $arrayFiltros['totalRegistro']>0){
+
+                $origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
+                      
+                $sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
+                 
+             }
 			
-		$retorno = $this->cargarDatos($sql, $arraySql);
-		return $retorno;
+			$retorno = $this->cargarDatos($sql, $arraySql);
+			return $retorno;
 	
 		}
-
 
 		public function totalRegistros($arrayFiltros = array()){
     
             $sql = "SELECT count(id) as total FROM envio
-                        WHERE codigoEnvio != ''";
+                        WHERE estado != 'Borrado'";
 
-            if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
-                $sql .= " AND (codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
-            }
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+				$sql .= " AND (codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+			}
 
-            $arrayDatos = array();
-            $retorno = 0;
+            $arrayDatos = array(
+			);
+           
+			$retorno = 0;
 
             $respuesta = $this->cargarDatos($sql, $arrayDatos);
             foreach($respuesta as $total){
@@ -385,7 +430,78 @@
 
             return $retorno;
 
+        }
+
+
+		public function totalRegistrosPendientes($arrayFiltros = array()){
+    
+            $sql = "SELECT count(id) as total FROM envio
+                        WHERE estado = 'Pendiente'";
+
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+				$sql .= " AND (codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+			}
+
+            $arrayDatos = array(
+			);
+           
+			$retorno = 0;
+
+            $respuesta = $this->cargarDatos($sql, $arrayDatos);
+            foreach($respuesta as $total){
+                $retorno = $total['total'];
             }
+
+            return $retorno;
+
+        }
+
+		public function totalRegistrosReparto($arrayFiltros = array()){
+    
+            $sql = "SELECT count(id) as total FROM envio
+                        WHERE estado = 'Reparto'";
+
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+				$sql .= " AND (codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+			}
+
+            $arrayDatos = array(
+			);
+           
+			$retorno = 0;
+
+            $respuesta = $this->cargarDatos($sql, $arrayDatos);
+            foreach($respuesta as $total){
+                $retorno = $total['total'];
+            }
+
+            return $retorno;
+
+        }
+
+		public function totalRegistrosEntregados($arrayFiltros = array()){
+    
+            $sql = "SELECT count(id) as total FROM envio
+                        WHERE estado = 'Entregado'";
+
+			if(isset($arrayFiltros['busqueda']) && $arrayFiltros['busqueda'] != "" ){
+				$sql .= " AND (codigoEnvio LIKE ('%".$arrayFiltros['busqueda']."%')) ";
+			}
+
+            $arrayDatos = array(
+			);
+           
+			$retorno = 0;
+
+            $respuesta = $this->cargarDatos($sql, $arrayDatos);
+            foreach($respuesta as $total){
+                $retorno = $total['total'];
+            }
+
+            return $retorno;
+
+        }
+
 	
 
 		public function estadoReparto(){

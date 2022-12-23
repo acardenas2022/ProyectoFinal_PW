@@ -3,6 +3,7 @@
 	$ruta = isset($_GET['r'])?$_GET['r']:"";
 	$accion = isset($_GET['a'])?$_GET['a']:"";
 	$idCliente = isset($_GET['idCliente'])?$_GET['idCliente']:"";
+	$llaveValor	= isset($_POST['llave'])?$_POST['llave']:"";
 
 	require_once("modelo/envios.php");
 	require_once("modelo/clientes.php");
@@ -16,13 +17,22 @@
 
 	if(isset($_POST['action']) && $_POST['action'] == "ingresar"){
 
-		$arrayDatos = $_POST;
-		$objEnvios->constructor($arrayDatos);
-		$respuesta = $objEnvios->ingresar();
+		if($llaveValor == $_SESSION['llave']){	
+			
+			$arrayDatos = $_POST;
+			$objEnvios->constructor($arrayDatos);
+			$respuesta = $objEnvios->ingresar();
+
+		}
 
 	}
 
 	$listaCiudadesSelect = $objEnvios->listarSelect();
+
+	
+	$llave = date("Ymdhis");
+	$_SESSION['llave'] = $llave;	
+	
 
 ?>
 
@@ -44,12 +54,6 @@
 	}
 ?>
 
-	
-	<style>
-	
-	</style>
-
-   
 
 
 
@@ -126,6 +130,7 @@
 			<div class="row">
 				<input type="hidden" name="id_cliente" value="<?=$objClientes->traerId()?>">
 				<input type="hidden" name="id_usuario" value="<?=$_SESSION['id']?>">
+				<input type="hidden" name="llave" value="<?=$llave?>">
 				<button class="btn waves-effect waves-light right amber darken-4" type="submit"  name="action" value="ingresar">Crear envio
 					<i class="material-icons right">save</i>
 				</button>

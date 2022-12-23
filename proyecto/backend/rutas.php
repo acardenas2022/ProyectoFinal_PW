@@ -19,7 +19,13 @@
 		include("vistas/estado_vista.php");
 	}elseif($ruta == "reparto"){
 		include("vistas/reparto_vista.php");
-	}
+	}elseif($ruta == "entregados"){
+		include("vistas/entregados_vista.php");
+	}elseif($ruta == "pendientes"){
+		include("vistas/pendientes_vista.php");
+	}else{
+		include("vistas/inicio_vista.php");
+	}	
 
 
 ?>

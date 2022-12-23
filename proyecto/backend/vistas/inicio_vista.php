@@ -1,15 +1,5 @@
 
 
-<style>
-   
-	.card {
-		position: relative;
-		margin: 0.5rem 0 1rem 0;
-		background-color: white;
-		border-radius: 2px;
-	}
-
-</style>
 
 			<div class="card" style="margin:100px 0 100px">
 				<div class="card-content">

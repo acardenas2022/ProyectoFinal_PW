@@ -41,11 +41,12 @@
  	
 	}
 
+	
 	$arrayFiltros = array("totalRegistro"=>5, "busqueda" => $busqueda);
 
-	$totalRegistros = $objReparto->totalRegistros($arrayFiltros);
+	$totalRegistrosReparto = $objReparto->totalRegistrosReparto($arrayFiltros);
 
-	$totalPaginas = ceil($totalRegistros / $arrayFiltros['totalRegistro']);
+	$totalPaginas = ceil($totalRegistrosReparto / $arrayFiltros['totalRegistro']);
 
 	if($pagina > $totalPaginas){
 		$pagina = $totalPaginas;
@@ -74,25 +75,6 @@
 
 ?>
 
-<style>
-
-	.pagination li a {
-		color: #ff6f00;
-		display: inline-block;
-		font-size: 1.2rem;
-		padding: 0 10px;
-		line-height: 30px;
-	}
-	.pagination li.active {
-  		background-color: #ff6f00 ;
-	}
-
-	.pagination li.disabled a {
-		cursor: default;
-		color: #ff6f00;
-	}
-
-</style>
 
 
 <?php
@@ -175,13 +157,25 @@
 
 <div class="card" style="margin:100px 0 100px">
 	<div class="row">
-		<h4 class="center align"> REPARTO </h4>		
+		<div class="grey darken-3 valign-wrapper" style="height: 80px">
+				<h4 class="white-text amber-text text-darken-4" style="margin-left:30px">Estado de envio</h4>
+		</div>
 	</div>
-	<div class="col s12 m4 l8">
+		<div class= "row">
+			<div class= "col s2" style= "margin-top:20px">
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
+?>
+				<a href="index2.php?r=clientes" class="waves-effect waves-light btn amber darken-4" > CREAR ENVIO </a>
+<?php
+			  }
+?>
+			</div>
+			<div class="col s4">
 				<form action="index2.php" method="GET">
 					<div class="input-field">
 						<input type="hidden" name="r" value="<?=$ruta?>">
-						<input id="search" type="search" name="busqueda" required>
+						<input id="search" autocomplete="off" type="search" name="busqueda" required>
 						<label class="label-icon left" for="search">
 							<i class="material-icons">search</i>
 						</label>
@@ -189,11 +183,24 @@
 					</div>
 				</form>
 			</div>
+			<div class="col s6" style= "margin-top:20px">
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
+?>
+				<a href="index2.php?r=estado" class="waves-effect waves-light btn amber darken-4" > GENERAL </a>
+				<a href="index2.php?r=pendientes" class="waves-effect waves-light btn amber darken-4" > PENDIENTES </a>
+<?php
+			  }
+?>
+				<a href="index2.php?r=reparto" class="waves-effect waves-light btn amber darken-4" > EN REPARTO </a>
+				<a href="index2.php?r=entregados" class="waves-effect waves-light btn amber darken-4" > ENTREGADOS </a>
+
+			</div>
+	</div>
 	<table class="striped">
 		<thead>
 				<tr class="grey darken-3 white-text">
 					<th>Codigo Envio</th>
-					<th>Fecha recepcion</th>
 					<th>Remitente</th>
 					<th>Destinatario</th>
 					<th>Departamento</th>
@@ -201,7 +208,7 @@
 					<th>Calle</th>
 					<th>N° Puerta</th>
 					<th>Apto</th>
-					<th>ESTADO</th>
+					<th style="width:250px">ESTADO</th>
 				</tr>
 		</thead>
 
@@ -212,7 +219,6 @@
 ?>
 			<tr>
 				<td><?=$reparto['codigoEnvio']?></td>
-				<td><?=$reparto['fechaRecepcion']?></td>
 				<td><?=$reparto['nombreCliente']?></td>
 				<td><?=$reparto['nombreDestinatario']?></td>
 				<td><?=$reparto['departamentoDestinatario']?></td>
@@ -222,10 +228,10 @@
 				<td><?=$reparto['apartamento']?></td>
 				<td>
 					<div class= "right-aling">
+
 						<a href="index2.php?r=<?=$ruta?>&a=entregado&id=<?=$reparto['id']?>" class="waves-effect waves-light btn modal-trigger amber darken-4" > Entregado</a>
-					</div>
-					<div class= "right-aling">
 						<a href="index2.php?r=<?=$ruta?>&a=volverAPendiente&id=<?=$reparto['id']?>" class="waves-effect waves-light btn modal-trigger amber darken-4"> Pendiente</a>
+	
 					</div>
 				</td>	
 			</tr>	

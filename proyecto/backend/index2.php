@@ -18,6 +18,8 @@
 			<!--Import materialize.css-->
 			<link type="text/css" rel="stylesheet" href="web/css/materialize.css"  media="screen,projection"/>
 
+			<link type="text/css" rel="stylesheet" href="web/css/flashEntregasCSS.css"  media="screen,projection"/>
+
 			<!--Let browser know website is optimized for mobile-->
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		</head>
@@ -31,74 +33,6 @@
 					font-family: Lovelo_Black;
 					src: url("web/font/Lovelo_Black.ttf");
 			}
-
-			.titulo{
-				font-family: Lovelo_Black;
-				font-size: 30px;
-				text-align: center;
-				color: #424242 ;
-				line-height: 75px;
-			}
-
-			.titulo2{
-				font-family: big_river;
-				font-size: 30px;
-				text-align: center;
-				color: white;
-				line-height: 75px;
-			}
-			
-			nav {
-  				color: #fff;
-  				background-color: #ee6e73;
- 				width: 100%;
- 				height:80px;
-  				line-height: 56px;
-			}
-
-			@media only screen and (min-width: 601px) {
-				nav.nav-extended .nav-wrapper {
-					min-height: 80px;
-				}
-				nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
-					height: 80px;
-					line-height: 80px;
-				}
-				.navbar-fixed {
-					height: 80px;
-				}
-			}
-		
-
-			body {
-   				display: flex;
-   				min-height: 100vh;
-    			flex-direction: column;
- 			}
-
- 			main {
-   				flex: 1 0 auto;
-  			}
-
-			.material-icons-footer{
-				filter: invert(46%) sepia(58%) saturate(2996%) hue-rotate(1deg) brightness(103%) contrast(106%);
-			}
-
-			@media only screen and (min-width: 200px) {
-				nav.nav-extended .nav-wrapper {
-					min-height: 80px;
-				}
-				nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
-					height: 80px;
-					line-height: 80px;
-				}
-				.navbar-fixed {
-					height: 80px;
-				}
-			}
-
-		
-
 
 		
 		</style>
@@ -116,7 +50,6 @@
 						<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 							<ul id="nav-mobile" class="right hide-on-med-and-down">
 							<li><a href="index2.php?r=inicio2">Inicio <i class="material-icons left">home</i></a></li>
-							<li><a href="index2.php?r=rastrear">Rastrear envio <i class="material-icons left">location_on</i></a></li>
 <?php
 			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
 ?>
@@ -124,22 +57,20 @@
 <?php
 			  }
 ?>
-
 <?php
-			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Repartidor" OR $_SESSION['perfil'] == "Encargado" ){
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Repartidor" ){
 ?>
-							<li><a href="index2.php?r=reparto">Reparto <i class="material-icons left">transfer_within_a_station</i></a></li>		
-<?php
-			  }
-?>
-<?php
-			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Encargado" OR $_SESSION['perfil'] == "Recepcionista" ){
-?>
-							<li><a href="index2.php?r=estado">Estado <i class="material-icons left">timeline</i></a></li>		
+							<li><a href="index2.php?r=reparto">Reparto <i class="material-icons left">timeline</i></a></li>	
 <?php
 			  }
 ?>
-
+<?php
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
+?>
+							<li><a href="index2.php?r=estado">Estado <i class="material-icons left">timeline</i></a></li>	
+<?php
+			  }
+?>	
 							<li><a class="modal-trigger" href="#modal3">Salir <i class="material-icons left">forward</i></a></li>
 						</ul>
 				</div>
@@ -149,20 +80,20 @@
 				<li><a class= "amber-text text-darken-4" href="index2.php?r=rastrear">Rastrear</a></li>
 <?php
 			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
-?>			
+?>		
 				<li><a class= "amber-text text-darken-4" href="index2.php?r=clientes"> Ingresar envio </a></li>
 <?php
 			  }
 ?>
 <?php
-			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Repartidor" OR $_SESSION['perfil'] == "Encargado" ){
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Repartidor" ){
 ?>
-				<li><a class= "amber-text text-darken-4" href="index2.php?r=reparto">Reparto</a></li>
+				<li><a class= "amber-text text-darken-4" href="index2.php?r=reparto"> Reparto </a></li>
 <?php
 			  }
 ?>
 <?php
-			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Encargado" ){
+			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Recepcionista" OR $_SESSION['perfil'] == "Encargado" ){
 ?>
 				<li><a class= "amber-text text-darken-4" href="index2.php?r=estado">Estado</a></li>
 <?php

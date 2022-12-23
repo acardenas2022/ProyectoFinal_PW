@@ -2,7 +2,7 @@
 
 	require_once("modelo/generico.php");
 
-	class agencias extends generico{
+	class ciudades extends generico{
 
 		protected $ciudad;
 

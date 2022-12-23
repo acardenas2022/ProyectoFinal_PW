@@ -16,22 +16,27 @@
 
 
 			<div class="card" style="margin-top:100px">
+				<div class="grey darken-3 valign-wrapper" style="height: 80px">
+					<h4 class="white-text amber-text text-darken-4" style="margin-left:30px"> RASTREAR UN ENVIO </h4>
+				</div>
 				<div class="card-content">
-					<div class="black-text center-align">
-						<h4 class="amber-text text-darken-4"> Rastrear un envío </h4>
-					</div>
-					<div class= "row">
-						<form action="index.php" method="GET"  class= "col s6">
-							<div class="input-field" >
-								<input type="hidden" name="r" value="<?=$ruta?>">
-								<input id="search" type="search" name="busqueda" required>
-									<label class="label-icon" for="search"> Numero de rastreo
-										<i class="material-icons left">search</i>
-									</label>
-										<i class="material-icons">close</i>
-							</div>
-						</form>
-					</div>
+					<div class="row" style="margin-top: 30px">
+						<div class= "col s6">
+							<h6 class="black-text" > Ingresa el numero de rastreo para ver el estado de tu envio</h6>
+						</div>
+						<div class="col s6">
+							<form action="index.php" method="GET">
+								<div class="input-field" >
+									<input type="hidden" name="r" value="<?=$ruta?>">
+									<input id="search" autocomplete="off" type="search" name="busqueda" required>
+										<label class="label-icon" for="search"> Numero de rastreo
+											<i class="material-icons left">search</i>
+										</label>
+											<i class="material-icons">close</i>
+								</div>
+							</form>
+						</div>
+						</div>
 				</div>
 			</div>
 	
