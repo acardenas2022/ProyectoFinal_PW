@@ -41,13 +41,14 @@
  	
 	}
 
-	
-	$arrayFiltros = array("totalRegistro"=>5, "busqueda" => $busqueda);
 
+	$arrayFiltros = array("totalRegistro" =>5, "busqueda" => $busqueda);
+		
 	$totalRegistrosReparto = $objReparto->totalRegistrosReparto($arrayFiltros);
 
 	$totalPaginas = ceil($totalRegistrosReparto / $arrayFiltros['totalRegistro']);
-
+	
+	
 	if($pagina > $totalPaginas){
 		$pagina = $totalPaginas;
 	}
@@ -69,6 +70,7 @@
 		$paginaAnterior = 1;
 	}
 
+	
 	
 
 	$listaEnReparto = $objReparto->listarReparto($arrayFiltros);
@@ -228,10 +230,8 @@
 				<td><?=$reparto['apartamento']?></td>
 				<td>
 					<div class= "right-aling">
-
 						<a href="index2.php?r=<?=$ruta?>&a=entregado&id=<?=$reparto['id']?>" class="waves-effect waves-light btn modal-trigger amber darken-4" > Entregado</a>
 						<a href="index2.php?r=<?=$ruta?>&a=volverAPendiente&id=<?=$reparto['id']?>" class="waves-effect waves-light btn modal-trigger amber darken-4"> Pendiente</a>
-	
 					</div>
 				</td>	
 			</tr>	
@@ -239,35 +239,35 @@
 		}
 ?>	
 			<tr class="grey darken-3">
-							<td colspan=12  class="center-align">
-								<ul class="pagination">
-									<li class="waves-effect">
-										<a href="index2.php?r=<?=$ruta?>&pagina=<?=$paginaAnterior?>&busqueda=<?=$busqueda?>">
-										<i class="material-icons">chevron_left</i></a>
-									</li>
+					<td colspan=10  class="center-align">
+						<ul class="pagination">
+							<li class="waves-effect">
+								<a href="index2.php?r=<?=$ruta?>&pagina=<?=$paginaAnterior?>&busqueda=<?=$busqueda?>">
+									<i class="material-icons">chevron_left</i></a>
+							</li>
 <?php
-			for($i = 1; $i <= $totalPaginas; $i++ ){
-							
-				if($pagina == $i){
-					$marca = "active";
-				}else{
-					$marca = "waves-effect";
-				}	
+					for($i = 1; $i <= $totalPaginas; $i++ ){
+								
+						if($pagina == $i){
+							$marca = "active";
+						}else{
+							$marca = "waves-effect";
+						}	
 ?>
-									<li class="<?=$marca?>">
-										<a href="index2.php?r=<?=$ruta?>&pagina=<?=$i?>&busqueda=<?=$busqueda?>"><?=$i?></a>
-									</li>
+							<li class="<?=$marca?>">
+								<a href="index2.php?r=<?=$ruta?>&a=reparto&pagina=<?=$i?>&busqueda=<?=$busqueda?>"><?=$i?></a>
+							</li>
 <?php
 
-			}
+				}
 ?>				
-									<li class="waves-effect">
-										<a href="index2.php?r=<?=$ruta?>&pagina=<?=$paginaSiguiente?>&busqueda=<?=$busqueda?>">
-										<i class="material-icons">chevron_right</i></a>
-									</li>
-								</ul>
-							</td>
-						</tr>
+							<li class="waves-effect">
+								<a href="index2.php?r=<?=$ruta?>&a=reparto&pagina=<?=$paginaSiguiente?>&busqueda=<?=$busqueda?>">
+									<i class="material-icons">chevron_right</i></a>
+							</li>
+						</ul>
+					</td>
+				</tr>
 		</tbody>
 	</table>
 </div>

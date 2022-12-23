@@ -10,7 +10,7 @@
 						<h4 class="black-text"> ¡Eleginos! <h4>
 						<br>
 					</div>
-					<div class= "col l4 s4 center-align">
+					<div class= "center-align">
 						<a href="index.php?r=agencias" class="waves-effect amber darken-4 btn" >Agencias</a>
 						<a href="index.php?r=rastrear" class="waves-effect amber darken-4 btn" >Rastrear envio</a>
 					</div>

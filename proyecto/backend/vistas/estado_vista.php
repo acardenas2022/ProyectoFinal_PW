@@ -234,7 +234,7 @@
 <?php
 	if($accion == "reparto" ){
 ?>
-	<div class="card">
+	<div class="card" style="margin:100px 0 100px">
 		<div class= "card-content">
 			<div class="row">
 				<h2> Estado del envio</h1>

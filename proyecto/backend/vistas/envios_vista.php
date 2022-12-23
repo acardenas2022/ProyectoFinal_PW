@@ -45,8 +45,8 @@
 <?php
 	}elseif (isset($respuesta) && $respuesta['codigo'] == 'Ok'){
 
+
 ?>
-		
 		<div class="green center-align" style="height=50px">
 			<h5> La operacion se realizo correctamente </h5> 
 		</div>
@@ -59,7 +59,9 @@
 
 <div class="card" style="margin:100px 0 100px">
 	<div class="row">
-	<h3 class="center-align"> Crear un nuevo envio </h3>
+		<div class="grey darken-3 valign-wrapper" style="height: 80px">
+			<h4 class="white-text amber-text text-darken-4" style="margin-left:30px">Crear Envio</h4>
+		</div>
 		<form action="index2.php?r=<?=$ruta?>"  method="POST">
 			<div class="row">
 			<div class="input-field col s6">

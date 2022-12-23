@@ -60,7 +60,7 @@
 <?php
 			  if(isset($_SESSION['perfil']) && $_SESSION['perfil'] == "Repartidor" ){
 ?>
-							<li><a href="index2.php?r=reparto">Reparto <i class="material-icons left">timeline</i></a></li>	
+							<li><a href="index2.php?r=reparto">Reparto <i class="material-icons left">transfer_within_a_station</i></a></li>	
 <?php
 			  }
 ?>

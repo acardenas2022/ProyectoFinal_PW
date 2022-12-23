@@ -241,7 +241,7 @@
 			</form>
 		</div>
 		
-		<table class="striped">
+		<table class="col s6 striped">
 			<thead>
 				<tr class="grey darken-3 white-text">
 					<th>#</th>

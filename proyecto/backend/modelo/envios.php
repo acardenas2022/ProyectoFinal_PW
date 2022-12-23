@@ -335,7 +335,7 @@
 	
 		}
 
-		public function listarReparto($arrayDatos  = array()){
+		public function listarReparto($arrayFiltros  = array()){
 	
 			$sql = "SELECT
 						e.id AS id,
@@ -362,11 +362,11 @@
 
 			if(isset($arrayFiltros['totalRegistro']) && $arrayFiltros['totalRegistro']>0){
 
-				$origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
-					
-				$sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
-				
-			}
+                $origen = ($arrayFiltros ['pagina'] -1) * $arrayFiltros['totalRegistro'];
+                      
+                $sql .= " LIMIT ".$origen.",".$arrayFiltros['totalRegistro'];
+                 
+             }
 				
 			$retorno = $this->cargarDatos($sql, $arraySql);
 			return $retorno;
